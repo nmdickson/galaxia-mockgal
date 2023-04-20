@@ -34,5 +34,13 @@
 # Galaxia data directory (too large, please download original from sourceforge)
 GalaxiaData
 
+# File generated through configuration/make
+galaxia
+Makefile
+.deps/
+config.*
+stamp*
+build-aux/build-aux/
+
 # Misc
 *.tar.gz
