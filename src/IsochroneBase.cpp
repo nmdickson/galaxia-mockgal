@@ -14,6 +14,7 @@
 #include "TableInterpolator.h"
 #include "ebf.hpp"
 
+#include "filesystem"
 
 
 //IsoFileDescriptor::IsoFileDescriptor(const string fname,const string& magcolorNames)
@@ -194,8 +195,19 @@ void IsochroneBase:: readIsocrhones(const string& inputDir,const string& dirname
 //	double fe[]={0.0001,0.001,0.01,0.02,0.03};
 //	double fe1[]={0.0001,0.0002,0.0005,0.0007,0.0009,0.0012,0.0016,0.002,0.0024,0.003,0.004,0.006,0.008,0.01,0.014,0.018,0.024,0.03};
 
-	double fe1[]={0.0001,0.0002,0.0004,0.0005,0.0006,0.0007,0.0008,0.0009,0.001,0.0012,0.0014,0.0016,0.0018,0.002,0.0022,0.0024,0.0026,0.003,0.0034,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.012,0.014,0.016,0.018,0.02,0.024,0.028,0.03};
-	vector<double> fe(fe1,fe1+sizeof(fe1)/sizeof(fe1[0]));
+	string isodir=inputDir+dirname+photoSys;
+
+	vector<double> fe;
+    for (const auto &entry : filesystem::directory_iterator(isodir)){
+
+        if (entry.path().extension() == ".dat") {
+
+	        fe.push_back(stod(string(entry.path().stem()).substr(7, 8)));
+
+        }
+    }
+    sort(fe.begin(), fe.end());
+
 	for(size_t i=0;i<fe.size();++i)
 	{
 		FeH.push_back(log10(fe[i]/0.019));
