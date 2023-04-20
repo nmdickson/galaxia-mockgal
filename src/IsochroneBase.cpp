@@ -334,8 +334,11 @@ int IsochroneBase:: readfile(const string& fname,double alpha1,double feH1,const
 	FILE* fd=NULL;
 	char buf_check[512];
 	vector<float> x(iso_fileinfo.fields,0.0);
-	certify(int(x.size())>=16,"number of fields greater than equal to 16");
-	certify(int(iso_fileinfo.extraid.size())<=9,"number of magnames grater than 16");
+
+	// certify(int(x.size())>=16,"number of fields greater than equal to 16");
+	// certify(int(iso_fileinfo.extraid.size())<=9,"number of magnames grater than 16");
+	certify(int(iso_fileinfo.extraid.size())<=19,"number of magnames greater than 25");
+
 	Isochrone icData;
 	icData.age=-1.0;
 	icData.FeH=log10(feH1/0.019);
@@ -359,7 +362,9 @@ int IsochroneBase:: readfile(const string& fname,double alpha1,double feH1,const
 //			if(iso_fileinfo.fields==21)
 //			sscanf(buf,"%G%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f",&x[0],&x[1],&x[2],&x[3],&x[4],&x[5],&x[6],&x[7],&x[8],&x[9],&x[10],&x[11],&x[12],&x[13],&x[14],&x[15],&x[16],&x[17],&x[18],&x[19],&x[20]);
 //			if(iso_fileinfo.fields==16)
-			sscanf(buf,"%G%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f",&x[0],&x[1],&x[2],&x[3],&x[4],&x[5],&x[6],&x[7],&x[8],&x[9],&x[10],&x[11],&x[12],&x[13],&x[14],&x[15]);
+//			sscanf(buf,"%G%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f",&x[0],&x[1],&x[2],&x[3],&x[4],&x[5],&x[6],&x[7],&x[8],&x[9],&x[10],&x[11],&x[12],&x[13],&x[14],&x[15]);
+
+			sscanf(buf,"%G%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f",&x[0],&x[1],&x[2],&x[3],&x[4],&x[5],&x[6],&x[7],&x[8],&x[9],&x[10],&x[11],&x[12],&x[13],&x[14],&x[15],&x[16],&x[17],&x[18],&x[19],&x[20],&x[21],&x[22],&x[23],&x[24],&x[25]);
 
 			sprintf(buf_check,"%f ",x[2]);
 			if(strncmp(buf_check,"nan",3)==0)
