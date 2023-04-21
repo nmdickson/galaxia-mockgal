@@ -1,0 +1,12 @@
+nbody1/bj/
+          10       1
+sat0578.ebf
+sat0425.ebf
+sat1066.ebf
+sat1223.ebf
+sat0142.ebf
+sat0340.ebf
+sat0481.ebf
+sat1094.ebf
+sat1474.ebf
+sat0534.ebf
